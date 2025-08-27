@@ -14,11 +14,13 @@ model Festival {
   startDate DateTime
   endDate   DateTime
   booths    FestivalBoothInstance[]
+
+  @@unique([name, startDate], name: "name_startDate")
 }
 
 model Booth {
   id    Int                     @id @default(autoincrement())
-  name  String
+  name  String                  @unique
   area  String
   years FestivalBoothInstance[]
 }
@@ -29,4 +31,6 @@ model FestivalBoothInstance {
   festivalId Int
   booth      Booth    @relation(fields: [boothId], references: [id])
   boothId    Int
+
+  @@unique([festivalId, boothId], name: "festivalId_boothId")
 }
