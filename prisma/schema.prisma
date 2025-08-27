@@ -1,0 +1,32 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Festival {
+  id        Int                     @id @default(autoincrement())
+  name      String
+  parkName  String
+  startDate DateTime
+  endDate   DateTime
+  booths    FestivalBoothInstance[]
+}
+
+model Booth {
+  id    Int                     @id @default(autoincrement())
+  name  String
+  area  String
+  years FestivalBoothInstance[]
+}
+
+model FestivalBoothInstance {
+  id         Int      @id @default(autoincrement())
+  festival   Festival @relation(fields: [festivalId], references: [id])
+  festivalId Int
+  booth      Booth    @relation(fields: [boothId], references: [id])
+  boothId    Int
+}
