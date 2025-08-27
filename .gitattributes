@@ -1,0 +1,12 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# Force LF for source code
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.prisma text eol=lf
+
+# Force CRLF for Windows batch files
+*.bat text eol=crlf
